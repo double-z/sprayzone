@@ -1,6 +1,6 @@
 package :apache_install, :provides => :webserver do
 
-  requires :apache_core, :apache_ports, :apache_tune
+  requires :apache_core, :apache_ports, :apache_tune, :apache_virtual_host
   
 end
 
@@ -47,6 +47,27 @@ package :apache_tune do
   
   verify do
     has_apt "apache2-mpm-prefork"
+  end
+end
+
+package :apache_virtual_host do
+  description "Configures a VirtualHost for the website"
+  requires :apache_tune
+  
+  virtualhost_content = "<VirtualHost *:80>
+                                ServerName travelblog
+                                DocumentRoot /srv/www/travelblog/public_html/
+                                ErrorLog /srv/www/travelblog/logs/error.log
+                                CustomLog /srv/www/travelblog/logs/access.log combined
+                            </VirtualHost>"
+  
+  push_text virtualhost_content, '/etc/apache2/sites-available/travelblog'
+
+  runner "a2ensite travelblog" 
+  runner "touch /tmp/restart-apache2"
+  
+  verify do
+    file_contains "/etc/apache2/sites-available/travelblog", virtualhost_content
   end
   
 end
