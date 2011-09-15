@@ -1,6 +1,13 @@
+# This is a default configuration file. The values within it will not grant you access to any service.
+
+# Set this value as the IP address of the remote server
 HOSTIP = '255.255.255.255'
 
+# The root user's password
 ROOT_PASSWORD = 'CHANGE_ME'
-DEPLOY_USER = 'deploy'
-DEPLOY_USER_PASSWORD = 'CHANGE_ME'
 
+# The name given for your deployment user
+DEPLOY_USER = 'deploy'
+
+# The deployment user's password
+DEPLOY_USER_PASSWORD = 'CHANGE_ME'
