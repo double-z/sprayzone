@@ -1,6 +1,0 @@
-<VirtualHost *:80>
-  ServerName #{APPNAME}
-  DocumentRoot /srv/www/#{APPNAME}/public_html/
-  ErrorLog /srv/www/#{APPNAME}/logs/error.log
-  CustomLog /srv/www/#{APPNAME}/logs/access.log combined
-</VirtualHost>

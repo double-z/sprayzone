@@ -54,16 +54,24 @@ package :apache_virtual_host do
   description "Configures a VirtualHost for the website"
   requires :apache_tune
   
-  virtualhost_content = `cat assets/virtualhost_content`
+  virtualhost_content = "<VirtualHost *:80>
+    ServerName #{APPNAME}
+    DocumentRoot /srv/www/#{APPNAME}/public_html/
+    ErrorLog /srv/www/#{APPNAME}/logs/error.log
+    CustomLog /srv/www/#{APPNAME}/logs/access.log combined
+  </VirtualHost>"
   
   runner "sudo rm /etc/apache2/sites-available/#{APPNAME}"
   push_text virtualhost_content, "/etc/apache2/sites-available/#{APPNAME}", :sudo => true
+
+  runner "mkdir -p /srv/www/#{APPNAME}/public_html/" # create the public web root
+  runner "mkdir -p /srv/www/#{APPNAME}/logs" # create a place to put log files
 
   runner "a2ensite #{APPNAME}" 
   runner "touch /tmp/restart-apache2"
   
   verify do
-    file_contains "/etc/apache2/sites-available/#{APPNAME}", virtualhost_content
+    file_contains "/etc/apache2/sites-available/#{APPNAME}", "DocumentRoot /srv/www/#{APPNAME}/public_html/"
   end
   
 end

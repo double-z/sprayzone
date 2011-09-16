@@ -14,3 +14,6 @@ DEPLOY_USER = 'deploy'
 
 # The deployment user's password
 DEPLOY_USER_PASSWORD = 'CHANGE_ME'
+
+# Sets the root password for MySQL
+MYSQLROOTPASSWORD = 'CHANGE_ME'

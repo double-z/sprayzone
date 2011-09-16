@@ -11,7 +11,7 @@ package :php_install_with_php_apache_module do
   runner "aptitude -y install php5 php5-mysql libapache2-mod-php5"
   runner "touch /tmp/restart-apache2"
 
-  verify do
-    has_apt "libapache2-mod-php5"
-  end
+  #verify do
+  #  has_apt "libapache2-mod-php5"
+  #end
 end

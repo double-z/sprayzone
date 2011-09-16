@@ -9,6 +9,7 @@ require 'packages/postfix'
 require 'packages/mysql'
 require 'packages/php'
 require 'packages/apache'
+require 'packages/wordpress'
 
 policy :stack, :roles => :app do
   requires :initialize
@@ -18,6 +19,7 @@ policy :stack, :roles => :app do
   requires :database
   requires :php
   requires :webserver
+  requires :wordpress
 end
 
 deployment do
