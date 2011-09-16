@@ -55,34 +55,19 @@ package :apache_virtual_host do
   requires :apache_tune
   
   virtualhost_content = "<VirtualHost *:80>
-                                ServerName travelblog
-                                DocumentRoot /srv/www/travelblog/public_html/
-                                ErrorLog /srv/www/travelblog/logs/error.log
-                                CustomLog /srv/www/travelblog/logs/access.log combined
+                                ServerName #{APPNAME}
+                                DocumentRoot /srv/www/#{APPNAME}/public_html/
+                                ErrorLog /srv/www/#{APPNAME}/logs/error.log
+                                CustomLog /srv/www/#{APPNAME}/logs/access.log combined
                             </VirtualHost>"
   
-  push_text virtualhost_content, '/etc/apache2/sites-available/travelblog'
+  push_text virtualhost_content, "/etc/apache2/sites-available/#{APPNAME}"
 
-  runner "a2ensite travelblog" 
+  runner "a2ensite #{APPNAME}" 
   runner "touch /tmp/restart-apache2"
   
   verify do
-    file_contains "/etc/apache2/sites-available/travelblog", virtualhost_content
+    file_contains "/etc/apache2/sites-available/#{APPNAME}", virtualhost_content
   end
   
 end
-
-# System updates already happen via :system_update, no need to add it again.
-
-# configure apache virtualhost, with the reverse dns
-# ALSO, postfix_install_loopback_only
-#ALSO:
-#  mysql_install "$DB_PASSWORD" && mysql_tune 40
-#  mysql_create_database "$DB_PASSWORD" "$DB_NAME"
-#  mysql_create_user "$DB_PASSWORD" "$DB_USER" "$DB_USER_PASSWORD"
-#  mysql_grant_user "$DB_PASSWORD" "$DB_USER" "$DB_NAME"
-
-# DO BEFORE APACHE:
-#  php_install_with_apache && php_tune
-
-# ALSO: 'goodstuff', restartServices, etc.

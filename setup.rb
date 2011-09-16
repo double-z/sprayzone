@@ -5,12 +5,16 @@ require 'lib/verifiers'
 require 'packages/update'
 require 'packages/deploy'
 require 'packages/init'
+require 'packages/postfix'
+require 'packages/php'
 require 'packages/apache'
 
 policy :stack, :roles => :app do
   requires :initialize
   requires :system_update
   requires :deployer
+  requires :mailserver
+  requires :php
   requires :webserver
 end
 
