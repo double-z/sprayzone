@@ -1,5 +1,7 @@
 $: << File.dirname(__FILE__)
 
+require 'erb'
+
 require 'config'
 require 'lib/verifiers'
 require 'packages/update'

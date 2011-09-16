@@ -23,18 +23,20 @@ package :wordpress_core do
   runner "chown www-data  #{WPROOT}/wp-config.php"
   runner "chmod 640  #{WPROOT}/wp-config.php"
 
-  # database configuration
-  require 'active_support/secure_random'
-
   runner "echo 'CREATE DATABASE wordpress;' | mysql -u root -p#{MYSQLROOTPASSWORD}"
   runner %{echo "CREATE USER 'wordpress'@'localhost' IDENTIFIED BY '#{WPPASS}';" | mysql -u root -p#{MYSQLROOTPASSWORD}}
   
   runner %{echo "GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'localhost';" | mysql -u root -p#{MYSQLROOTPASSWORD}}
   runner "echo 'FLUSH PRIVILEGES;' | mysql -u root -p#{MYSQLROOTPASSWORD}"
   
-  wordpress_config = `cat assets/wp-config.php.erb`
+  wordpress_config = ERB.new(File.read('assets/wp-config.php.erb')).result
+  
+  # wordpress_config = `cat assets/wp-config.php.erb`
   
   runner "rm  #{WPROOT}/wp-config.php"
-  push_text wordpress_config, "#{WPROOT}/wp-config.php", :sudo => true
+  push_text wordpress_config, "#{WPROOT}/wp-config.php"
 
+  verify do
+    file_contains "#{WPROOT}/wp-config.php", "#{WPPASS}"
+  end
 end
