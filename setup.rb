@@ -15,6 +15,7 @@ policy :stack, :roles => :app do
   requires :system_update
   requires :deployer
   requires :mailserver
+  requires :database
   requires :php
   requires :webserver
 end

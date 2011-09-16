@@ -54,14 +54,10 @@ package :apache_virtual_host do
   description "Configures a VirtualHost for the website"
   requires :apache_tune
   
-  virtualhost_content = "<VirtualHost *:80>
-                                ServerName #{APPNAME}
-                                DocumentRoot /srv/www/#{APPNAME}/public_html/
-                                ErrorLog /srv/www/#{APPNAME}/logs/error.log
-                                CustomLog /srv/www/#{APPNAME}/logs/access.log combined
-                            </VirtualHost>"
+  virtualhost_content = `cat assets/virtualhost_content`
   
-  push_text virtualhost_content, "/etc/apache2/sites-available/#{APPNAME}"
+  runner "sudo rm /etc/apache2/sites-available/#{APPNAME}"
+  push_text virtualhost_content, "/etc/apache2/sites-available/#{APPNAME}", :sudo => true
 
   runner "a2ensite #{APPNAME}" 
   runner "touch /tmp/restart-apache2"
