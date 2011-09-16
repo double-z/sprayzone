@@ -1,6 +1,9 @@
 # This is a default configuration file. The values within it will not grant you access to any service.
 
-# Set this value as the IP address of the remote server
+# Name of the application/site/etc.
+APPNAME = 'superblog'
+
+# IP address of the remote server
 HOSTIP = '255.255.255.255'
 
 # The root user's password

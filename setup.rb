@@ -7,14 +7,16 @@ require 'packages/deploy'
 require 'packages/init'
 require 'packages/postfix'
 require 'packages/mysql'
+require 'packages/php'
 require 'packages/apache'
 
 policy :stack, :roles => :app do
   requires :initialize
   requires :system_update
   requires :deployer
-  requires :webserverl
-  requires :database
+  requires :mailserver
+  requires :php
+  requires :webserver
 end
 
 deployment do
