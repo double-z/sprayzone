@@ -43,7 +43,7 @@ package :apache_tune do
 
   runner commands.join '; '
 
-  runner "touch /tmp/restart-apache2"
+  runner "service apache2 restart" # restart apache
 
   verify do
     has_apt "apache2-mpm-prefork"
@@ -67,7 +67,7 @@ package :apache_virtual_host do
 
   runner "a2ensite #{APP_NAME}"
   runner "a2enmod rewrite" # enable mod_rewrite
-  runner "/etc/init.d/apache2 restart" # restart apache
+  runner "service apache2 restart" # restart apache
 
   verify do
     file_contains "/etc/apache2/sites-available/#{APP_NAME}", "DocumentRoot /srv/www/#{APP_NAME}/public_html/"

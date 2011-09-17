@@ -30,7 +30,7 @@ package :mysql_tune do
   runner "sudo rm /etc/mysql/my.cnf"
   push_text mysql_config, "/etc/mysql/my.cnf"
 
-  runner "touch /tmp/restart-mysql"
+  runner "service mysql restart" # restart mysql
   
   verify do
     file_contains "/etc/mysql/my.cnf", "myisam_sort_buffer_size=10M"

@@ -22,7 +22,7 @@ package :postfix_loopback_only do
   requires :postfix_install
   
   runner "/usr/sbin/postconf -e 'inet_interfaces = loopback-only'"
-  runner "touch /tmp/restart-postfix"
+  runner "service postfix restart" # restart postfix
   
   verify do
     file_contains '/usr/sbin/postconf', 'inet_interfaces'
