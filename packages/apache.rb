@@ -65,8 +65,9 @@ package :apache_virtual_host do
   runner "mkdir -p /srv/www/#{APP_NAME}/public_html/" # create the public web root
   runner "mkdir -p /srv/www/#{APP_NAME}/logs" # create a place to put log files
 
-  runner "a2ensite #{APP_NAME}" 
-  runner "touch /tmp/restart-apache2"
+  runner "a2ensite #{APP_NAME}"
+  runner "a2enmod rewrite" # enable mod_rewrite
+  runner "/etc/init.d/apache2 restart" # restart apache
 
   verify do
     file_contains "/etc/apache2/sites-available/#{APP_NAME}", "DocumentRoot /srv/www/#{APP_NAME}/public_html/"
