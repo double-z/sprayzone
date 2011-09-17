@@ -56,8 +56,8 @@ package :apache_virtual_host do
 
   virtualhost_content = ERB.new(File.read('assets/virtualhost_content.erb')).result
 
-  runner "sudo rm /etc/apache2/sites-available/default" # LET'S REMOVE THE DEFAULT TO JUST BE A DICK
-  push_text virtualhost_content, "/etc/apache2/sites-available/default" # and replace it with ours
+  runner "sudo rm /etc/apache2/sites-available/default" # Remove the default web host...
+  push_text virtualhost_content, "/etc/apache2/sites-available/default" # ...and replace it with ours
   
   runner "sudo rm /etc/apache2/sites-available/#{APP_NAME}"
   push_text virtualhost_content, "/etc/apache2/sites-available/#{APP_NAME}"
