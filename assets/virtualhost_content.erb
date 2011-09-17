@@ -1,0 +1,21 @@
+<VirtualHost *:80>
+  ServerAdmin webmaster@ama.ab.ca
+  
+  ServerName <%= APP_NAME %>
+  DocumentRoot /srv/www/<%= APP_NAME %>/public_html/
+  <Directory />
+          Options FollowSymLinks
+          AllowOverride None
+  </Directory>
+  <Directory /var/www/>
+          Options Indexes FollowSymLinks MultiViews
+          AllowOverride None
+          Order allow,deny
+          allow from all
+  </Directory>
+  
+  ErrorLog /srv/www/<%= APP_NAME %>/logs/error.log
+  LogLevel warn
+  
+  CustomLog /srv/www/<%= APP_NAME %>/logs/access.log combined
+</VirtualHost>

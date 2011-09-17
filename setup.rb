@@ -26,7 +26,7 @@ end
 
 deployment do
   delivery :ssh do
-    roles :app => HOSTIP
+    roles :app => HOST_IP
     user 'root'
     password ROOT_PASSWORD
   end

@@ -1,10 +1,10 @@
 # This is a default configuration file. The values within it will not grant you access to any service.
 
 # Name of the application/site/etc.
-APPNAME = 'superblog'
+APP_NAME = 'superblog'
 
 # IP address of the remote server
-HOSTIP = '255.255.255.255'
+HOST_IP = '255.255.255.255'
 
 # The root user's password
 ROOT_PASSWORD = 'CHANGE_ME'
@@ -15,5 +15,8 @@ DEPLOY_USER = 'deploy'
 # The deployment user's password
 DEPLOY_USER_PASSWORD = 'CHANGE_ME'
 
-# Sets the root password for MySQL
-MYSQLROOTPASSWORD = 'CHANGE_ME'
+# Root password for MySQL
+MYSQL_ROOT_PASSWORD = 'CHANGE_ME'
+
+# Wordpress database password
+WORDPRESS_DATABASE_PASSWORD = 'CHANGE_ME'

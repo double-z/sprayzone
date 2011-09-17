@@ -8,14 +8,14 @@ package :mysql do
   description "Installs mysql database"
 
   commands = [
-    "echo 'mysql-server-5.1 mysql-server/root_password password #{MYSQLROOTPASSWORD}' | debconf-set-selections",
-    "echo 'mysql-server-5.1 mysql-server/root_password_again password #{MYSQLROOTPASSWORD}' | debconf-set-selections",
+    "echo 'mysql-server-5.1 mysql-server/root_password password #{MYSQL_ROOT_PASSWORD}' | debconf-set-selections",
+    "echo 'mysql-server-5.1 mysql-server/root_password_again password #{MYSQL_ROOT_PASSWORD}' | debconf-set-selections",
     "apt-get -y install mysql-server mysql-client",
     "echo 'Sleeping while MySQL starts up for the first time...'",
     "sleep 5"]
-               
+
   runner commands.join '; '
-  
+
   verify do
     has_apt 'mysql-server'
   end
@@ -23,7 +23,7 @@ end
 
 
 package :mysql_tune do
-  description "Tunes MySQL's memory usage to utilize the percentage of memory you specify."
+  description "Tunes MySQL's memory usage. Currently optimized for 512MB-total systems."
 
   mysql_config = `cat assets/my.cnf`
   
