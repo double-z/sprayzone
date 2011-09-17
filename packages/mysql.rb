@@ -28,7 +28,7 @@ package :mysql_tune do
   mysql_config = `cat assets/my.cnf`
   
   runner "sudo rm /etc/mysql/my.cnf"
-  push_text mysql_config, "/etc/mysql/my.cnf", :sudo => true
+  push_text mysql_config, "/etc/mysql/my.cnf"
 
   runner "touch /tmp/restart-mysql"
   
