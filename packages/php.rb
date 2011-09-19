@@ -4,7 +4,6 @@ package :php_install, :provides => :php do
   
 end
 
-
 package :php_install_with_php_apache_module do
   description "Installs PHP5 as well as the PHP Apache module"
 
