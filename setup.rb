@@ -12,16 +12,18 @@ require 'packages/mysql'
 require 'packages/php'
 require 'packages/apache'
 require 'packages/wordpress'
+require 'packages/learning-centre'
 
 policy :stack, :roles => :app do
   requires :initialize
-  requires :system_update
-  requires :deployer
-  requires :mailserver
-  requires :database
-  requires :php
+#  requires :system_update
+#  requires :deployer
+#  requires :mailserver
+#  requires :database
+#  requires :php
   requires :webserver
-  requires :wordpress
+#  requires :wordpress
+  requires :learningcentre
 end
 
 deployment do

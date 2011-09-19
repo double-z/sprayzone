@@ -46,7 +46,7 @@ package :wordpress_supress_update_notifications do
 
   WORDPRESS_THEME_FUNCTIONS="/srv/www/travelblog/public_html/wordpress/wp-content/themes/twentyeleven/functions.php"
 
-  wordpress_functions = ERB.new(File.read('assets/wordpress_theme_functions.php.erb')).result
+  wordpress_functions = ERB.new(File.read('assets/wordpress_theme_functions.php')).result
   runner "rm  #{WORDPRESS_THEME_FUNCTIONS}"
   push_text wordpress_functions, "#{WORDPRESS_THEME_FUNCTIONS}"
   
