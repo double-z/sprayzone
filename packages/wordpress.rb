@@ -15,12 +15,12 @@ package :wordpress_core do
   runner "aptitude -y install wget"
 
   # Download, extract, and copy wordpress into a public location
-  runner "cd #{APP_ROOT}; wget http://wordpress.org/latest.tar.gz; tar #{WORDPRESS_ROOT} -xfz latest.tar.gz"
-#  runner "cd #{APP_ROOT}; cp -r wordpress/* #{WORDPRESS_ROOT}"
+  runner "cd #{APP_ROOT}; wget http://wordpress.org/latest.tar.gz; tar xfz latest.tar.gz"
+  runner "cd #{APP_ROOT}; cp -r wordpress/* #{WORDPRESS_ROOT}"
   
   # Remove our tarball and the private copy of the wordpress dir
   runner "rm #{APP_ROOT}/latest*"
-#  runner "rm -rf #{APP_ROOT}/wordpress"
+  runner "rm -rf #{APP_ROOT}/wordpress"
 
   # Let's set up a database for Wordpress to use
   runner "echo 'CREATE DATABASE wordpress;' | mysql -u root -p#{MYSQL_ROOT_PASSWORD}"
