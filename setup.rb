@@ -7,6 +7,7 @@ require 'lib/verifiers'
 require 'packages/update'
 require 'packages/deploy'
 require 'packages/init'
+require 'packages/ftp'
 require 'packages/postfix'
 require 'packages/mysql'
 require 'packages/php'
@@ -24,6 +25,7 @@ policy :stack, :roles => :app do
   requires :webserver
   requires :wordpress
   requires :learningcentre
+  requires :ftpserver
 end
 
 deployment do

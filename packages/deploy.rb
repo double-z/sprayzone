@@ -1,7 +1,7 @@
 package :deploy, :provides => :deployer do
   description 'Create deploy user'
   
-  requires :create_deploy_user, :add_deploy_ssh_keys, :set_permissions
+  requires :create_deploy_user, :add_deploy_ssh_keys, :create_ftp_user, :set_permissions
 end
 
 package :create_deploy_user do
@@ -29,6 +29,18 @@ package :add_deploy_ssh_keys do
   
   verify do
     file_contains authorized_keys_file, id_rsa_pub
+  end
+end
+
+package :create_ftp_user do
+  description "Create a user who will have FTP access"
+  requires :create_deploy_user
+
+  runner "useradd --create-home --shell /bin/bash --user-group --groups users #{FTP_USER}"
+  runner "echo '#{FTP_USER}:#{FTP_USER_PASSWORD}' | chpasswd"
+
+  verify do
+    has_directory "/home/#{FTP_USER}"
   end
 end
 
