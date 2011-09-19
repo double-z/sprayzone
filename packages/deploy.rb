@@ -37,7 +37,7 @@ package :set_permissions do
   requires :add_deploy_ssh_keys
   
   runner "chmod 0700 /home/#{DEPLOY_USER}/.ssh"
-  runner "chown -R #{DEPLOY_USER}:#{DEPLOY_USER} /home/#{DEPLOY_USER}/.ssh"  
+  runner "chown -R #{DEPLOY_USER}:#{DEPLOY_USER} /home/#{DEPLOY_USER}/.ssh"
   runner "chmod 0700 /home/#{DEPLOY_USER}/.ssh/authorized_keys"
 end
 

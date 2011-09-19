@@ -1,3 +1,12 @@
+GIT
+  remote: git@github.com:amaabca/sprinkle.git
+  revision: 7519a3ee111d9be92313a191db702fb647a04b2d
+  specs:
+    sprinkle (0.4.1)
+      activesupport (>= 2.0.2)
+      capistrano (>= 2.5.5)
+      highline (>= 1.4.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -19,14 +28,10 @@ GEM
     net-ssh (2.2.1)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
-    sprinkle (0.3.6)
-      activesupport (>= 2.0.2)
-      capistrano (>= 2.5.5)
-      highline (>= 1.4.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   i18n
-  sprinkle
+  sprinkle!

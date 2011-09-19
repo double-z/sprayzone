@@ -7,19 +7,15 @@ package :learning_centre_copy do
 
   requires :webserver
 
-  PUBLIC_ROOT="/srv/www/#{APP_NAME}/public_html" # path to DocumentRoot
-  
-  learningcentre_content = ERB.new(File.read('assets/learning-centre/index.html')).result
-  
-  runner "mkdir -p #{PUBLIC_ROOT}/learning" # create a place for the Learning Centre files
-  push_text learningcentre_content, "#{PUBLIC_ROOT}/learning/index.html"
-  
-  
-  # NEED TO PUSH HEADER IMAGE AS WELL
-  # NEED TO VERIFY THE FILE IS THERE (CONTAINS)
-  
+  LEARNING_DIR="/srv/www/#{APP_NAME}/public_html/learning"
+
+  runner "mkdir -p #{LEARNING_DIR}" # create a place for the Learning Centre files
+  runner "rm #{LEARNING_DIR}/index.html" # remove the index if it was there before
+  transfer "assets/learning-centre/index.html", "#{LEARNING_DIR}/index.html" # place the index from this repo in the dir
+  transfer "assets/learning-centre/header.jpg", "#{LEARNING_DIR}/header.jpg" # place the header image from this repo in the dir
+
   verify do
-    file_contains "#{PUBLIC_ROOT}/learning/index.html", "Please login to view and register for courses."
+    file_contains "#{LEARNING_DIR}/index.html", "Please login to view and register for courses."
   end
   
 end
