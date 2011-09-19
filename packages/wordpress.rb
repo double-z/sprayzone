@@ -1,6 +1,6 @@
 package :wordpress_install, :provides => :wordpress do
 
-  requires :wordpress_core
+  requires :wordpress_core, :wordpress_supress_update_notifications
 
 end
 
@@ -36,5 +36,22 @@ package :wordpress_core do
 
   verify do
     file_contains "#{WORDPRESS_ROOT}/wp-config.php", "#{WORDPRESS_DATABASE_PASSWORD}"
+  end
+end
+
+package :wordpress_supress_update_notifications do
+  description "Doesn't disable updates, but disables notification of updates"
+
+  requires :wordpress_core
+
+  WORDPRESS_THEME_FUNCTIONS="/srv/www/travelblog/public_html/wordpress/wp-content/themes/twentyeleven/functions.php"
+
+  wordpress_functions = ERB.new(File.read('assets/wordpress_theme_functions.php.erb')).result
+  runner "rm  #{WORDPRESS_THEME_FUNCTIONS}"
+  push_text wordpress_functions, "#{WORDPRESS_THEME_FUNCTIONS}"
+  
+
+  verify do
+    file_contains "#{WORDPRESS_THEME_FUNCTIONS}", "pre_site_transient_update_core"
   end
 end
