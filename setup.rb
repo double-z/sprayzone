@@ -14,13 +14,13 @@ require 'packages/apache'
 require 'packages/wordpress'
 
 policy :stack, :roles => :app do
-#  requires :initialize
-#  requires :system_update
-#  requires :deployer
-#  requires :mailserver
-#  requires :database
-#  requires :php
-#  requires :webserver
+  requires :initialize
+  requires :system_update
+  requires :deployer
+  requires :mailserver
+  requires :database
+  requires :php
+  requires :webserver
   requires :wordpress
 end
 
