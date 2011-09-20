@@ -1,3 +1,9 @@
+# Ensure that Apache listens on port 80
+Listen 80
+
+# Listen for virtual host requests on all IP addresses
+NameVirtualHost *:80
+
 <VirtualHost *:80>
   ServerAdmin webmaster@ama.ab.ca
 
@@ -12,4 +18,21 @@
   LogLevel warn
 
   CustomLog /srv/www/<%= APP_NAME %>/logs/access.log combined
+</VirtualHost>
+
+
+<VirtualHost *:80>
+  ServerAdmin webmaster@ama.ab.ca
+
+  ServerName learning.ama.ab.ca
+  DocumentRoot /srv/www/<%= APP_NAME %>/public_html/learning/
+  <Directory />
+          Options FollowSymLinks
+          AllowOverride None
+  </Directory>
+
+  ErrorLog /srv/www/learning/logs/error.log
+  LogLevel warn
+
+  CustomLog /srv/www/learning/logs/access.log combined
 </VirtualHost>
