@@ -7,12 +7,6 @@
           Options FollowSymLinks
           AllowOverride None
   </Directory>
-  <Directory /var/www/>
-          Options Indexes FollowSymLinks MultiViews
-          AllowOverride None
-          Order allow,deny
-          allow from all
-  </Directory>
 
   ErrorLog /srv/www/<%= APP_NAME %>/logs/error.log
   LogLevel warn
