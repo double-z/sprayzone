@@ -26,12 +26,12 @@ package :mysql_tune do
   description "Tunes MySQL's memory usage. Currently optimized for 512MB-total systems."
 
   mysql_config = `cat assets/my.cnf`
-  
+
   runner "sudo rm /etc/mysql/my.cnf"
   push_text mysql_config, "/etc/mysql/my.cnf"
 
   runner "service mysql restart" # restart mysql
-  
+
   verify do
     file_contains "/etc/mysql/my.cnf", "myisam_sort_buffer_size=10M"
   end

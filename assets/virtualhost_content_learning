@@ -7,15 +7,15 @@ NameVirtualHost *:80
 <VirtualHost *:80>
   ServerAdmin webmaster@ama.ab.ca
 
-  ServerName <%= APP_NAME %>
-  DocumentRoot /srv/www/<%= APP_NAME %>/public_html/
+  ServerName learning.ama.ab.ca
+  DocumentRoot /srv/www/learning/public_html/
   <Directory />
-          Options FollowSymLinks
+          Options FollowSymLinkscd 
           AllowOverride None
   </Directory>
 
-  ErrorLog /srv/www/<%= APP_NAME %>/logs/error.log
+  ErrorLog /srv/www/learning/logs/error.log
   LogLevel warn
 
-  CustomLog /srv/www/<%= APP_NAME %>/logs/access.log combined
+  CustomLog /srv/www/learning/logs/access.log combined
 </VirtualHost>
