@@ -7,7 +7,7 @@ package :learning_centre_copy do
 
   requires :webserver
 
-  LEARNING_DIR="/srv/www/#{APP_NAME}/public_html/learning"
+  LEARNING_DIR="/srv/www/learning/public_html"
 
   runner "mkdir -p #{LEARNING_DIR}" # create a place for the Learning Centre files
   runner "rm #{LEARNING_DIR}/index.html" # remove the index if it was there before
