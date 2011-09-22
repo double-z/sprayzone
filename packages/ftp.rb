@@ -16,7 +16,7 @@ package :install_ftp do
 end
 
 package :set_ftpuser_directory do
-  description "Set the FTP directory for our FTP user"
+  description "Set the FTP home directory for our FTP user"
   requires :install_ftp, :deployer
 
   runner "usermod -d /srv/www/learning/public_html #{FTP_USER}"
