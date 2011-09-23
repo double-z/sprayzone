@@ -54,7 +54,7 @@ package :apache_virtual_host do
   description "Configures a VirtualHost for the website"
   requires :apache_tune
 
-  virtualhost_content = ERB.new(File.read('assets/virtualhost_content.erb')).result
+  virtualhost_content = ERB.new(File.read('assets/virtualhost_content_application.erb')).result
 
   runner "sudo rm /etc/apache2/sites-available/default" # Remove the default web host virtualhost config...
   push_text virtualhost_content, "/etc/apache2/sites-available/default" # ...and replace it with ours

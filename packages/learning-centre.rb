@@ -7,7 +7,7 @@ package :learning_centre_enable do
   
   requires :webserver
   
-  virtualhost_content = ERB.new(File.read('assets/virtualhost_content_learning')).result
+  virtualhost_content = ERB.new(File.read('assets/virtualhost_content_learning.erb')).result
   
   runner "sudo rm /etc/apache2/sites-available/learning" # Remove the learning virtualhost config if it's there
   push_text virtualhost_content, "/etc/apache2/sites-available/learning" # Replace it with the one in this script

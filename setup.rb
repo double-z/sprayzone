@@ -24,8 +24,8 @@ policy :stack, :roles => :app do
   requires :php
   requires :webserver
   requires :wordpress
-  requires :learningcentre
-  requires :ftpserver
+#  requires :learningcentre
+#  requires :ftpserver
 end
 
 deployment do

@@ -1,0 +1,8 @@
+<VirtualHost *:80>
+    ServerName <%= HOST_IP %>
+    DocumentRoot /srv/www/learning/public_html/
+    ErrorLog /srv/www/learning/logs/error.log
+    LogLevel warn
+    
+    CustomLog /srv/www/learning/logs/access.log combined
+</VirtualHost>

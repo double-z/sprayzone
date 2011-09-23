@@ -1,0 +1,8 @@
+<VirtualHost *:80>
+    ServerName <%= HOST_IP %>
+    DocumentRoot /srv/www/<%= APP_NAME %>/public_html/
+    ErrorLog /srv/www/<%= APP_NAME %>/logs/error.log
+    LogLevel warn
+    
+    CustomLog /srv/www/<%= APP_NAME %>/logs/access.log combined
+</VirtualHost>
